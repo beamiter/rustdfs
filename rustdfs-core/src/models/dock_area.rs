@@ -59,3 +59,69 @@ impl From<&[i32]> for DockArea {
         }
     }
 }
+
+impl DockArea {
+    #[must_use]
+    pub fn as_xyhw(
+        &self,
+        screens_height: i32,
+        screens_width: i32,
+        screen: &Screen,
+    ) -> Option<Xyhw> {
+        if self.top > 0 {
+            return Some(self.xyhw_from_top(screen.bbox.y));
+        }
+        if self.bottom > 0 {
+            return Some(self.xyhw_from_bottom(screens_height, screen.bbox.y + screen.bbox.height));
+        }
+        if self.left > 0 {
+            return Some(self.xyhw_from_left(screen.bbox.x));
+        }
+        if self.right > 0 {
+            return Some(self.xyhw_from_right(screens_width, screen.bbox.x + screen.bbox.width));
+        }
+        None
+    }
+
+    fn xyhw_from_top(&self, screen_y: i32) -> Xyhw {
+        XyhwBuilder {
+            x: self.top_start_x,
+            y: screen_y,
+            h: self.top - screen_y,
+            w: self.top_end_x - self.top_start_x,
+            ..XyhwBuilder::default()
+        }
+        .into()
+    }
+
+    fn xyhw_from_bottom(&self, screens_height: i32, screen_bottom: i32) -> Xyhw {
+        XyhwBuilder {
+            x: self.bottom_start_x,
+            y: screens_height - self.bottom,
+            h: self.bottom - (screens_height - screen_bottom),
+            w: self.bottom_end_x - self.bottom_start_x,
+            ..XyhwBuilder::default()
+        }
+        .into()
+    }
+    fn xyhw_from_left(&self, screen_x: i32) -> Xyhw {
+        XyhwBuilder {
+            x: screen_x,
+            y: self.left_start_y,
+            h: self.left_end_y - self.left_start_y,
+            w: self.left - screen_x,
+            ..XyhwBuilder::default()
+        }
+        .into()
+    }
+    fn xyhw_from_right(&self, screens_width: i32, screen_right: i32) -> Xyhw {
+        XyhwBuilder {
+            x: screens_width - self.right,
+            y: self.right_start_y,
+            h: self.right_end_y - self.right_start_y,
+            w: self.right - (screens_width - screen_right),
+            ..XyhwBuilder::default()
+        }
+        .into()
+    }
+}

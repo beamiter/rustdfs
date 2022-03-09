@@ -87,7 +87,7 @@ impl Workspace {
             .into_iter()
             .filter(|gutter| gutter.wsid == self.id || gutter.wsid == None)
             .fold(vec![], |mut acc, gutter| {
-                match acc.iter().enumerate().find(|(_i, g )| g.side == gutter.side) {
+                match acc.iter().enumerate().find(|(_i, g)| g.side == gutter.side) {
                     Some((i, x)) => {
                         if x.wsid.is_none() {
                             acc[i] = gutter;
@@ -161,7 +161,7 @@ impl Workspace {
     pub fn center_halfed(&self) -> Xyhw {
         self.xyhw_avoided.center_halfed()
     }
-    pub fn update_avoid_areas(&mut self) {
+    pub fn update_avoided_areas(&mut self) {
         let mut xyhw = self.xyhw;
         for a in &self.avoid {
             xyhw = xyhw.without(a);
@@ -189,5 +189,17 @@ impl Workspace {
         if *mwp > 100 {
             *mwp = 100;
         }
+    }
+
+    fn get_gutter(&self, side: &Side) -> i32 {
+        match self.gutters.iter().find(|g| &g.side == side) {
+            Some(g) => g.value,
+            None => 0,
+        }
+    }
+
+    #[must_use]
+    pub fn conter_halfed(&self) -> Xyhw {
+        self.xyhw_avoided.center_halfed()
     }
 }

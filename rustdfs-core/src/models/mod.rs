@@ -15,6 +15,7 @@ mod dock_area;
 
 use crate::layouts;
 
+pub use dock_area::DockArea;
 pub use window_state::WindowState;
 pub use window_type::WindowType;
 pub use window::WindowHandle;

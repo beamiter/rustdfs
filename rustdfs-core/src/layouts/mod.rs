@@ -5,6 +5,8 @@ use super::models::Workspace;
 use crate::models::Tag;
 use super::models::Window;
 
+mod center_main;
+
 #[derive(Debug, Serialize, Deserialize, Clone, Copy, PartialEq, Eq)]
 pub enum Layout {
     MainAndVertStack,

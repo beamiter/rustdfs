@@ -6,6 +6,16 @@ use crate::models::Tag;
 use super::models::Window;
 
 mod center_main;
+mod center_main_balanced;
+mod even_horizontal;
+mod even_vertical;
+mod fibonacci;
+mod grid_horizontal;
+mod main_and_deck;
+mod main_and_horizontal_stack;
+mod main_and_vert_stack;
+mod monocle;
+mod right_main_and_vert_stack;
 
 #[derive(Debug, Serialize, Deserialize, Clone, Copy, PartialEq, Eq)]
 pub enum Layout {
@@ -47,11 +57,11 @@ impl Default for Layout {
 impl Layout {
     pub fn update_windows(&self, workspace: &Workspace, windows: &mut [&mut Window],
                           tag: &Tag) {
-        // match self {
-        //     Self::MainAndVertStack | Self::LeftWiderRightStack => {
-        //         main_and_vert_stack::update(workspace, tag, windows);
-        //     }
-        // }
+        match self {
+            Self::MainAndVertStack | Self::LeftWiderRightStack => {
+                main_and_vert_stack::update(workspace, tag, windows);
+            }
+        }
     }
 
     pub const fn main_width(&self) -> u8 {

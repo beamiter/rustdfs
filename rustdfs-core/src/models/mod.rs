@@ -12,6 +12,8 @@ mod screen;
 mod workspace;
 mod tag;
 mod dock_area;
+mod focus_manager;
+mod layout_manager;
 
 use crate::layouts;
 
@@ -31,6 +33,8 @@ pub use window_change::WindowChange;
 pub use screen::{BBox, Screen};
 pub use tag::Tag;
 pub use workspace::Workspace;
+pub use focus_manager::FocusBehaviour;
+pub use focus_manager::FocusManager;
 
 pub type TagId = usize;
 type MaybeWindowHandle = Option<WindowHandle>;

@@ -57,11 +57,11 @@ impl Default for Layout {
 impl Layout {
     pub fn update_windows(&self, workspace: &Workspace, windows: &mut [&mut Window],
                           tag: &Tag) {
-        match self {
-            Self::MainAndVertStack | Self::LeftWiderRightStack => {
-                main_and_vert_stack::update(workspace, tag, windows);
-            }
-        }
+        // match self {
+        //     Self::MainAndVertStack | Self::LeftWiderRightStack => {
+        //         main_and_vert_stack::update(workspace, tag, windows);
+        //     }
+        // }
     }
 
     pub const fn main_width(&self) -> u8 {

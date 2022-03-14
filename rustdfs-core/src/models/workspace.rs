@@ -136,6 +136,13 @@ impl Workspace {
         }
     }
     #[must_use]
+    pub fn y(&self) -> i32 {
+        let top = self.margin.top as f32;
+        let gutter = self.get_gutter(&Side::Top);
+        self.xyhw_avoided.y() + (self.margin_multiplier * top) as i32 + gutter
+    }
+
+    #[must_use]
     pub fn height(&self) -> i32 {
         let top = self.margin.top as f32;
         let bottom = self.margin.bottom as f32;
@@ -157,6 +164,15 @@ impl Workspace {
             None => width,
         }
     }
+
+    fn get_gutter(&self, side: &Side) -> i32 {
+        match self.gutters.iter().find(|g| &g.side == side) {
+            Some(g) => g.value,
+            None => 0,
+        }
+    }
+
+
     #[must_use]
     pub fn center_halfed(&self) -> Xyhw {
         self.xyhw_avoided.center_halfed()
@@ -191,15 +207,5 @@ impl Workspace {
         }
     }
 
-    fn get_gutter(&self, side: &Side) -> i32 {
-        match self.gutters.iter().find(|g| &g.side == side) {
-            Some(g) => g.value,
-            None => 0,
-        }
-    }
 
-    #[must_use]
-    pub fn conter_halfed(&self) -> Xyhw {
-        self.xyhw_avoided.center_halfed()
-    }
 }

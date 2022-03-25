@@ -35,6 +35,8 @@ pub use tag::Tag;
 pub use workspace::Workspace;
 pub use focus_manager::FocusBehaviour;
 pub use focus_manager::FocusManager;
+pub use layout_manager::LayoutMode;
+pub use layout_manager::LayoutManager;
 
 pub type TagId = usize;
 type MaybeWindowHandle = Option<WindowHandle>;

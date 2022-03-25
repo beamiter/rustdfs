@@ -7,7 +7,7 @@ pub use scratchpad::ScratchPad;
 pub use workspace_config::Workspace;
 use crate::layouts::Layout;
 pub use crate::models::{FocusBehaviour, Gutter, Margins, Size};
-pub use crate::models::{Window, WindowType};
+pub use crate::models::{Window, WindowType, LayoutMode};
 
 pub trait Config {
     fn mapped_bindings(&self) -> Vec<Keybind>;
@@ -17,7 +17,7 @@ pub trait Config {
     fn mousekey(&self) -> Vec<String>;
     fn create_list_of_scratchpads(&self) -> Vec<ScratchPad>;
     fn layouts(&self) -> Vec<Layout>;
-    // fn layout_mode(&self) -> LayoutMode;
+    fn layout_mode(&self) -> LayoutMode;
     fn focus_new_windows(&self) -> bool;
 
     fn always_float(&self) -> bool;

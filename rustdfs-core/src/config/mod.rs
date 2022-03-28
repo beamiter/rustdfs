@@ -1,13 +1,17 @@
 mod keybind;
 mod workspace_config;
 mod scratchpad;
+mod insert_behavior;
 
+pub use insert_behavior::InsertBehavior;
 pub use keybind::Keybind;
 pub use scratchpad::ScratchPad;
 pub use workspace_config::Workspace;
-use crate::layouts::Layout;
 pub use crate::models::{FocusBehaviour, Gutter, Margins, Size};
-pub use crate::models::{Window, WindowType, LayoutMode};
+
+use crate::layouts::Layout;
+use crate::display_servers::DisplayServer;
+use crate::models::{Window, WindowType, LayoutMode};
 
 pub trait Config {
     fn mapped_bindings(&self) -> Vec<Keybind>;

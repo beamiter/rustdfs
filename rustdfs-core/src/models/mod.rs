@@ -23,6 +23,7 @@ pub use window_type::WindowType;
 pub use window::WindowHandle;
 pub use window::Window;
 pub use margins::Margins;
+pub use mode::Mode;
 pub use xyhw::Xyhw;
 pub use xyhw::XyhwBuilder;
 pub use xyhw_change::XyhwChange;

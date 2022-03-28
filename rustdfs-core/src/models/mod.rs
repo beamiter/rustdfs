@@ -33,6 +33,7 @@ pub use size::Size;
 pub use window_change::WindowChange;
 pub use screen::{BBox, Screen};
 pub use tag::Tag;
+pub use tag::Tags;
 pub use workspace::Workspace;
 pub use focus_manager::FocusBehaviour;
 pub use focus_manager::FocusManager;

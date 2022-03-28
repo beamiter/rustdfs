@@ -31,6 +31,7 @@ impl FocusBehaviour {
     }
 }
 
+#[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct FocusManager {
     pub behaviour: FocusBehaviour,
     pub focus_new_windows: bool,

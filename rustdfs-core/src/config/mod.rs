@@ -22,6 +22,7 @@ pub trait Config {
     fn create_list_of_scratchpads(&self) -> Vec<ScratchPad>;
     fn layouts(&self) -> Vec<Layout>;
     fn layout_mode(&self) -> LayoutMode;
+    fn insert_behavior(&self) -> InsertBehavior;
     fn focus_new_windows(&self) -> bool;
 
     fn always_float(&self) -> bool;
